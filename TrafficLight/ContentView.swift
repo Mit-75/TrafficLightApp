@@ -10,15 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var text = "START"
-
     @State private var redAlpha = 0.3
     @State private var yellowAlpha = 0.3
     @State private var greenAlpha = 0.3
-    
     @State private var currentLight = CurrentLight.red
+    
      private let lightIsOn = 1.0
      private let lightIsOff = 0.3
-    
     
     var body: some View {
         
