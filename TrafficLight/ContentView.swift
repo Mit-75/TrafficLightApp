@@ -19,9 +19,6 @@ struct ContentView: View {
     @State private var greenAlpha = 0.3
     @State var currentLight: CurrentLight
     
-     private let lightIsOn = 1.0
-     private let lightIsOff = 0.3
-    
     init(currentLight: CurrentLight) {
         self.currentLight = currentLight
     }
@@ -50,6 +47,10 @@ struct ContentView: View {
     }
     
     private func nextColor() {
+        
+        let lightIsOn = 1.0
+        let lightIsOff = 0.3
+        
         switch currentLight {
         case .red:
             greenAlpha = lightIsOff
