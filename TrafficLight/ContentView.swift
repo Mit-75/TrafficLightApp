@@ -25,45 +25,16 @@ struct ContentView: View {
     var body: some View {
         
         VStack {
-            Circle()
-                .frame(width: 100, height: 100)
-                .foregroundStyle(.red)
-                .opacity(redAlpha)
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(color: Color.red, radius: 10 )
-            
-            Circle()
-                .foregroundStyle(.yellow)
-                .opacity(yellowAlpha)
-                .frame(width: 100, height: 100)
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(color: Color.yellow, radius: 10 )
-                .padding(15)
-            
-            Circle()
-                .foregroundStyle(.green)
-                .opacity(greenAlpha)
-                .frame(width: 100, height: 100)
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(color: Color.green, radius: 10 )
+            CircleView(color: .red, opacity: redAlpha)
+            CircleView(color: .yellow, opacity: yellowAlpha)
+                .padding(10)
+            CircleView(color: .green, opacity: greenAlpha)
             
             Spacer()
             
-            Button {
-                tapButton()
-            } label: {
-                Text("\(text)")
-                    .font(.system(.title, design: .rounded, weight: .heavy))
-                    .foregroundColor(.black)
-                    .frame(width: 150, height: .infinity)
-                    .padding(.vertical, 15)
-                    .background(
-                        LinearGradient(gradient: Gradient(colors: [.red, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                    )
-                    .cornerRadius(20.0)
-            }
+           StartButtonView(title: text, action: tapButton)
         }
-        .padding(50)
+        .padding(30)
     }
     
     private func tapButton() {
