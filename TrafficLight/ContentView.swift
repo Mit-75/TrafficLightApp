@@ -13,36 +13,39 @@ struct ContentView: View {
     @State private var redAlpha = 0.3
     @State private var yellowAlpha = 0.3
     @State private var greenAlpha = 0.3
-    @State private var currentLight = CurrentLight.red
+    @State var currentLight: CurrentLight
     
      private let lightIsOn = 1.0
      private let lightIsOff = 0.3
+    
+    init(currentLight: CurrentLight) {
+        self.currentLight = currentLight
+    }
     
     var body: some View {
         
         VStack {
             Circle()
-                .foregroundStyle(Color.red)
-                .opacity(redAlpha)
                 .frame(width: 100, height: 100)
+                .foregroundStyle(.red)
+                .opacity(redAlpha)
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(color: Color.red, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                .shadow(color: Color.red, radius: 10 )
             
             Circle()
-                .foregroundStyle(Color.yellow)
+                .foregroundStyle(.yellow)
                 .opacity(yellowAlpha)
                 .frame(width: 100, height: 100)
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-                .shadow(color: Color.yellow, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                .shadow(color: Color.yellow, radius: 10 )
                 .padding(15)
             
             Circle()
-                .foregroundStyle(Color.green)
+                .foregroundStyle(.green)
                 .opacity(greenAlpha)
                 .frame(width: 100, height: 100)
                 .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(color: Color.green, radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/ )
+                .shadow(color: Color.green, radius: 10 )
             
             Spacer()
             
@@ -52,12 +55,13 @@ struct ContentView: View {
                 Text("\(text)")
                     .font(.system(.title, design: .rounded, weight: .heavy))
                     .foregroundColor(.black)
+                    .frame(width: 150, height: .infinity)
+                    .padding(.vertical, 15)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [.red, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                    )
+                    .cornerRadius(20.0)
             }
-            .padding(EdgeInsets(top: 15, leading: 30, bottom: 15, trailing: 30))
-            .background(
-                LinearGradient(gradient: Gradient(colors: [.red, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
-            )
-            .cornerRadius(20.0)
         }
         .padding(50)
     }
@@ -80,15 +84,12 @@ struct ContentView: View {
             currentLight = .red
         }
     }
-}
-
-// MARK: - CurrentLight
-extension ContentView {
-    private enum CurrentLight {
+    
+    enum CurrentLight {
         case red, yellow, green
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(currentLight: .red)
 }
