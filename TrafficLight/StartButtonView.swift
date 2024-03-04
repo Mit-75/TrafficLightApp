@@ -9,6 +9,7 @@ import SwiftUI
 
 struct StartButtonView: View {
     let title: String
+    let color: Color
     let action: () -> Void
     var body: some View {
         Button(action: action)  {
@@ -18,17 +19,17 @@ struct StartButtonView: View {
                 .foregroundStyle(.white)
         }
         .frame(width: 200, height: 70)
-        .background(.blue)
+        .background(color)
         .clipShape(.rect(cornerRadius: 20))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .stroke(.white, lineWidth: 5)
         )
-        .shadow(color: .blue, radius: 10)
+        .shadow(color: color, radius: 10)
     }
 }
 
 #Preview {
-    StartButtonView(title: "START", action: {})
+    StartButtonView(title: "START", color: .blue , action: {})
 }
 

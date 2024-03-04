@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    enum CurrentLight {
+        case red, yellow, green
+    }
+    
     @State private var text = "START"
     @State private var redAlpha = 0.3
     @State private var yellowAlpha = 0.3
@@ -23,18 +27,21 @@ struct ContentView: View {
     }
     
     var body: some View {
-        
-        VStack {
-            CircleView(color: .red, opacity: redAlpha)
-            CircleView(color: .yellow, opacity: yellowAlpha)
-                .padding(10)
-            CircleView(color: .green, opacity: greenAlpha)
+        ZStack{
+            Color(.gray).ignoresSafeArea()
             
-            Spacer()
-            
-           StartButtonView(title: text, action: tapButton)
+            VStack {
+                CircleView(color: .red, opacity: redAlpha)
+                CircleView(color: .yellow, opacity: yellowAlpha)
+                    .padding(10)
+                CircleView(color: .green, opacity: greenAlpha)
+                
+                Spacer()
+                
+                StartButtonView(title: text, color: .blue, action: tapButton)
+            }
+            .padding(30)
         }
-        .padding(30)
     }
     
     private func tapButton() {
@@ -56,9 +63,6 @@ struct ContentView: View {
         }
     }
     
-    enum CurrentLight {
-        case red, yellow, green
-    }
 }
 
 #Preview {
