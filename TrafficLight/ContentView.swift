@@ -38,15 +38,18 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                StartButtonView(title: text, color: .blue, action: tapButton)
+                StartButtonView(title: text, color: .blue) {
+                    if text == "START" {
+                        text = "NEXT"
+                    }
+                        nextColor()
+                }
             }
-            .padding(30)
+            .padding()
         }
     }
     
-    private func tapButton() {
-        text = ("NEXT")
-        
+    private func nextColor() {
         switch currentLight {
         case .red:
             greenAlpha = lightIsOff
